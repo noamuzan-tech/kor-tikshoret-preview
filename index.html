@@ -182,26 +182,29 @@ img{max-width:100%}
 .card .who{font-family:var(--display);font-weight:900;font-size:clamp(23px,3vw,31px);line-height:1.1;margin:0}
 .card .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;letter-spacing:.03em}
 
-.metric{margin-top:clamp(18px,2.6vw,26px)}
-.metric .cap2{font-size:12.5px;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between;gap:10px;direction:ltr;text-align:center}
-.flaps{display:flex;align-items:baseline;gap:10px;direction:ltr;justify-content:flex-start}
-.flaps .sep{font-family:var(--mono);font-size:22px;color:var(--muted)}
-.flap{font-family:var(--mono);font-weight:500;font-size:clamp(30px,4.6vw,44px);line-height:1;
-  font-variant-numeric:tabular-nums;color:var(--ink);background:var(--tint);border:1px solid var(--line);
-  border-radius:4px;padding:6px 10px;min-width:1.9ch;text-align:center;display:inline-block}
-.flap.lead-l{color:var(--c-opp);border-color:var(--c-opp);background:rgba(31,110,140,.10)}
-.flap.lead-r{color:var(--c-coal);border-color:var(--c-coal);background:rgba(164,67,43,.10)}
+.metric{margin-top:clamp(18px,2.6vw,25px)}
+.mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--muted);
+  margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+
+/* one line per camp: chip, label, bar, number. the coalition line is always first. */
+.row{display:grid;grid-template-columns:9px minmax(84px,auto) minmax(0,1fr) auto;
+  align-items:center;gap:10px;padding-block:7px}
+.chip{width:9px;height:9px;border-radius:50%;display:block}
+.rl{font-size:13.5px;color:var(--ink-2);white-space:nowrap}
+.track{height:9px;border-radius:5px;background:var(--tint);overflow:hidden;display:block}
+.track i{display:block;height:100%;width:0;border-radius:5px;transition:width .9s var(--ease)}
+.row .flap{font-family:var(--mono);font-weight:500;font-size:clamp(21px,2.9vw,28px);line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--ink-2);min-width:3.1ch;text-align:left;
+  background:none;border:0;padding:0;display:inline-block}
+.row.lead .rl{color:var(--ink);font-weight:500}
+.row.lead .flap{color:var(--ink);font-weight:600}
+.row[data-camp="coal"] .chip,.row[data-camp="coal"] .track i{background:var(--c-coal)}
+.row[data-camp="opp"]  .chip,.row[data-camp="opp"]  .track i{background:var(--c-opp)}
 @media (prefers-reduced-motion:no-preference){
   .flap.flip{animation:flip .07s linear}
   @keyframes flip{0%{transform:rotateX(0);filter:brightness(1)}50%{transform:rotateX(68deg);filter:brightness(.72)}100%{transform:rotateX(0);filter:brightness(1)}}
 }
-/* the diverging bar meets in the middle */
-.bar{margin-top:12px;height:12px;border-radius:7px;background:var(--tint);position:relative;overflow:hidden;direction:ltr}
-.bar i{position:absolute;top:0;bottom:0;width:0;transition:width .9s var(--ease)}
-.bar i.a{right:50%;background:var(--c-opp)}
-.bar i.b{left:50%;background:var(--c-coal)}
-.bar::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line)}
-.legend{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-family:var(--mono);direction:ltr}
+@media (max-width:420px){.row{grid-template-columns:9px minmax(74px,auto) minmax(0,1fr) auto;gap:8px}.rl{font-size:12.5px}}
 
 .verdict{text-align:center;margin-top:clamp(28px,4.5vh,48px);max-width:50ch;margin-inline:auto}
 .verdict .hand{font-family:var(--hand);font-size:clamp(28px,4.6vw,42px);color:var(--pen);line-height:1.15;margin:0}
@@ -304,8 +307,8 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">דוגמה אחת לכל כיוון</span>
-      <h2>אותו סרגל מדידה. תוצאות הפוכות.</h2>
-      <p>שני עמודים מתוך ה־26, נמדדו באותן שתי שאלות: את מי הפוסט מבקר, ולמי הוא נותן במה.</p>
+      <h2>שני עמודים. אותן שתי שאלות.</h2>
+      <p>את מי הפוסט מבקר, ולמי הוא נותן במה. אותה ספירה בדיוק הופעלה על שניהם.</p>
     </div>
 
     <div class="pair" id="pair">
@@ -314,17 +317,35 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
         <div class="sub">366 פוסטים · 55% מהם פוליטיים</div>
 
         <div class="metric">
-          <div class="cap2"><span>ביקורת על הקואליציה</span><span>ביקורת על האופוזיציה</span></div>
-          <div class="flaps"><span class="flap lead-l" data-n="107">0</span><span class="sep">:</span><span class="flap" data-n="1">0</span></div>
-          <div class="bar"><i class="a" data-w="49.5"></i><i class="b" data-w="0.5"></i></div>
-          <div class="legend"><span>107</span><span>1</span></div>
+          <div class="mlabel">כמה פוסטים כללו ביקורת</div>
+          <div class="row lead" data-camp="coal">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">על הקואליציה</span>
+            <span class="track"><i data-w="99.1"></i></span>
+            <span class="flap" data-n="107">0</span>
+          </div>
+          <div class="row" data-camp="opp">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">על האופוזיציה</span>
+            <span class="track"><i data-w="0.9"></i></span>
+            <span class="flap" data-n="1">0</span>
+          </div>
         </div>
 
         <div class="metric">
-          <div class="cap2"><span>במה לאופוזיציה</span><span>במה לקואליציה</span></div>
-          <div class="flaps"><span class="flap lead-l" data-n="48">0</span><span class="sep">:</span><span class="flap" data-n="5">0</span></div>
-          <div class="bar"><i class="a" data-w="45.3"></i><i class="b" data-w="4.7"></i></div>
-          <div class="legend"><span>48</span><span>5</span></div>
+          <div class="mlabel">כמה פוסטים נתנו במה</div>
+          <div class="row" data-camp="coal">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">לקואליציה</span>
+            <span class="track"><i data-w="9.4"></i></span>
+            <span class="flap" data-n="5">0</span>
+          </div>
+          <div class="row lead" data-camp="opp">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">לאופוזיציה</span>
+            <span class="track"><i data-w="90.6"></i></span>
+            <span class="flap" data-n="48">0</span>
+          </div>
         </div>
       </div>
 
@@ -333,23 +354,41 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
         <div class="sub">537 פוסטים · 44% מהם פוליטיים</div>
 
         <div class="metric">
-          <div class="cap2"><span>ביקורת על הקואליציה</span><span>ביקורת על האופוזיציה</span></div>
-          <div class="flaps"><span class="flap" data-n="13">0</span><span class="sep">:</span><span class="flap lead-r" data-n="62">0</span></div>
-          <div class="bar"><i class="a" data-w="8.7"></i><i class="b" data-w="41.3"></i></div>
-          <div class="legend"><span>13</span><span>62</span></div>
+          <div class="mlabel">כמה פוסטים כללו ביקורת</div>
+          <div class="row" data-camp="coal">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">על הקואליציה</span>
+            <span class="track"><i data-w="17.3"></i></span>
+            <span class="flap" data-n="13">0</span>
+          </div>
+          <div class="row lead" data-camp="opp">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">על האופוזיציה</span>
+            <span class="track"><i data-w="82.7"></i></span>
+            <span class="flap" data-n="62">0</span>
+          </div>
         </div>
 
         <div class="metric">
-          <div class="cap2"><span>במה לאופוזיציה</span><span>במה לקואליציה</span></div>
-          <div class="flaps"><span class="flap" data-n="8">0</span><span class="sep">:</span><span class="flap lead-r" data-n="101">0</span></div>
-          <div class="bar"><i class="a" data-w="3.7"></i><i class="b" data-w="46.3"></i></div>
-          <div class="legend"><span>8</span><span>101</span></div>
+          <div class="mlabel">כמה פוסטים נתנו במה</div>
+          <div class="row lead" data-camp="coal">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">לקואליציה</span>
+            <span class="track"><i data-w="92.7"></i></span>
+            <span class="flap" data-n="101">0</span>
+          </div>
+          <div class="row" data-camp="opp">
+            <span class="chip" aria-hidden="true"></span>
+            <span class="rl">לאופוזיציה</span>
+            <span class="track"><i data-w="7.3"></i></span>
+            <span class="flap" data-n="8">0</span>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="verdict">
-      <p class="hand">אותן שאלות. אותה ספירה. תוצאה הפוכה.</p>
+      <p class="hand">אותה שאלה. למה התשובות כל כך שונות?</p>
       <p>זו כל השיטה: לא לקבוע מי צודק, אלא לספור מה פורסם ולתת לכם לראות את הפער. הספירה מכסה את ספטמבר 2026 במלואו.</p>
     </div>
   </div>
@@ -527,7 +566,7 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
       t.classList.add("in");
       var k = +t.getAttribute("data-k") || 0;
       $$(".flap", t).forEach(function(f, i){ setTimeout(function(){ flap(f); }, 220 + k * 160 + i * 130); });
-      $$(".bar i", t).forEach(function(b, i){
+      $$(".track i", t).forEach(function(b, i){
         setTimeout(function(){ b.style.width = b.getAttribute("data-w") + "%"; }, 340 + k * 160 + i * 90);
       });
     });
@@ -535,7 +574,7 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
   /* last resort: whatever happened to the timers, the real figures are on screen */
   setTimeout(function(){
     $$(".flap").forEach(function(f){ if (!/^\d+$/.test(f.textContent) || f.textContent === "0") f.textContent = f.getAttribute("data-n"); });
-    $$(".bar i").forEach(function(b){ if (!b.style.width) b.style.width = b.getAttribute("data-w") + "%"; });
+    $$(".track i").forEach(function(b){ if (!b.style.width) b.style.width = b.getAttribute("data-w") + "%"; });
   }, 9000);
   [$("#rule1"), $("#end")].concat($$(".card")).forEach(function(el){ if (el) io.observe(el); });
 })();
