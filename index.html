@@ -132,9 +132,19 @@ img{max-width:100%}
 /* the one that gets named */
 .dot.hero{width:auto;height:auto;margin:0;padding:9px 15px;border-radius:7px;
   background:var(--pen);border-color:var(--pen);color:#fff;z-index:4;
-  transform:translate(var(--x),var(--y)) translate(-50%,-50%);
+  left:var(--hx);top:var(--hy);transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:9px;white-space:nowrap;
   font-family:var(--display);font-weight:900;font-size:17px;letter-spacing:-.01em;
   box-shadow:0 8px 26px rgba(200,36,28,.42)}
+.dot.hero .qm{font-family:var(--mono);font-weight:500;font-size:19px;opacity:.95;
+  border-inline-start:1px solid rgba(255,255,255,.45);padding-inline-start:9px}
+@media (prefers-reduced-motion:no-preference){
+  /* never lands: the position is the one thing the teaser does not give away */
+  .dot.hero{animation:wander 7s ease-in-out infinite}
+  @keyframes wander{0%,100%{left:var(--wa)}50%{left:var(--wb)}}
+  .dot.hero .qm{animation:qmPulse 7s ease-in-out infinite}
+  @keyframes qmPulse{0%,100%{opacity:.55}50%{opacity:1}}
+}
 .dot.hero::after{content:none}
 .dot.hero .tipx{display:none}
 
@@ -149,10 +159,10 @@ img{max-width:100%}
 .axis .lab.l{left:0}.axis .lab.c{left:50%;transform:translateX(-50%)}.axis .lab.r{right:0}
 
 /* the readout that rolls to the index value */
-.read{position:absolute;left:0;top:0;z-index:5;transform:translate(var(--x),var(--y)) translate(-50%,0);
+.read{position:absolute;left:50%;top:var(--y);z-index:5;transform:translate(-50%,0);
   margin-top:46px;text-align:center;opacity:0;transition:opacity .45s .5s}
 .scrolly.n12-on .read{opacity:1}
-.read .v{font-family:var(--mono);font-size:30px;font-weight:500;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.read .v{font-family:var(--mono);font-size:38px;font-weight:500;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .read .k{font-size:11px;color:var(--band-muted);margin-top:6px;letter-spacing:.04em;font-family:var(--body)}
 .read .rng{display:block;margin-top:9px;height:9px;position:relative}
 .read .rng i{position:absolute;top:4px;height:1.5px;background:var(--pen);left:0;right:0}
@@ -395,8 +405,8 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
         <p>כל עמוד מקבל מקום על ציר אחד, לפי הספירה בלבד. לא לפי תחושה.</p>
       </div>
       <div class="cap" id="cap2">
-        <h2>וזה אחד מתוך 26</h2>
-        <p>את כל השאר תוכלו לראות באתר המלא.</p>
+        <h2>התשובה נפתחת באתר המלא</h2>
+        <p>26 עמודים, כל אחד במקומו על הציר, וכל מספר פתוח עד הפוסטים שמאחוריו.</p>
       </div>
     </div>
 
@@ -691,7 +701,7 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
     ["israelhayom",0.75],["olamkatan",2.16],["kikar",2.30],["flash",2.67],
     ["news0404",2.87],["c14",3.77]
   ];
-  var HERO = "n12", HERO_LO = -3.58, HERO_HI = -1.77, HERO_MID = -2.67;
+  var HERO = "n12";
 
   /* ---- ticker ---- */
   var items = ["<b>בקרוב</b> האתר המלא","26 עמודי חדשות","8,717 פוסטים","1–30 בספטמבר 2026",
@@ -714,14 +724,13 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
   function reveal(on){
     heroEl.classList.toggle("hero", on);
     heroEl.classList.toggle("q", !on);
-    heroEl.innerHTML = on ? "חדשות 12" : '<span class="tipx">בקרוב</span>';
+    heroEl.innerHTML = on ? 'חדשות 12<span class="qm">?</span>' : '<span class="tipx">בקרוב</span>';
   }
 
   /* the readout that rides under the named tile */
   var read = document.createElement("div");
   read.className = "read";
-  read.innerHTML = '<div class="v mono" id="readV">0.0</div><div class="k">מדד מאזן הסיקור</div>' +
-                   '<span class="rng"><i></i></span>';
+  read.innerHTML = '<div class="v mono" id="readV">?</div><div class="k">מדד מאזן הסיקור</div>';
   stage.appendChild(read);
 
   var pct = function(v){ return (v + 5) * 10; };
@@ -749,11 +758,12 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
       d.el.style.setProperty("--x", x.toFixed(1) + "px");
       d.el.style.setProperty("--y", y.toFixed(1) + "px");
       if (d.id === HERO) {
-        read.style.setProperty("--x", x.toFixed(1) + "px");
+        /* two ends to drift between, deliberately wide: the teaser is not claiming a position */
+        d.el.style.setProperty("--wa", (w * 0.22).toFixed(1) + "px");
+        d.el.style.setProperty("--wb", (w * 0.72).toFixed(1) + "px");
+        d.el.style.setProperty("--hx", (w * 0.47).toFixed(1) + "px");
+        d.el.style.setProperty("--hy", y.toFixed(1) + "px");
         read.style.setProperty("--y", mid.toFixed(1) + "px");   /* hangs off the rule, not off the tile */
-        var rng = $(".rng", read);
-        rng.style.width = ((pct(HERO_HI) - pct(HERO_LO)) / 100 * w).toFixed(1) + "px";
-        rng.style.marginInlineStart = "auto"; rng.style.marginInlineEnd = "auto";
       }
     });
   }
@@ -804,7 +814,7 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
       if (!REDUCE) { var p = $("#penRing"); p.style.strokeDasharray = "1"; p.style.strokeDashoffset = "1";
         p.animate([{strokeDashoffset: 1}, {strokeDashoffset: 0}], {duration: 1100, delay: 260, fill: "forwards", easing: "cubic-bezier(.2,.7,.2,1)"}); }
     }
-    if (step >= 2) roll($("#readV"), HERO_MID, true, 1100);
+
   }
 
   var stepIO = new IntersectionObserver(function(es){
