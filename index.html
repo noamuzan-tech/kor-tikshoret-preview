@@ -244,6 +244,54 @@ img{max-width:100%}
   .mast .tile{width:30px;height:30px}
   .mast b{font-size:18px}
 }
+/* ---- close-up: what the page covers, whom it criticises, and nine real rows ---- */
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);
+  margin-bottom:clamp(26px,4vh,40px)}
+@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:clamp(16px,2.2vw,22px)}
+.fact h4{margin:0 0 14px;font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--pen);font-weight:500}
+.fact ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.fact .fnote{margin:14px 0 0;font-size:11px;color:var(--muted);font-family:var(--mono)}
+.tops li{display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr) auto;align-items:center;gap:10px;font-size:13px}
+.tn{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt{height:8px;border-radius:4px;background:var(--tint);overflow:hidden;display:block}
+.tt i{display:block;height:100%;background:var(--ink-2);opacity:.55;border-radius:4px}
+.tops li:first-child .tt i{background:var(--pen);opacity:1}
+.tv{font-family:var(--mono);font-size:13px;color:var(--muted);min-width:3ch;text-align:left}
+.names li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;
+  color:var(--ink-2);border-bottom:1px dashed var(--line);padding-bottom:8px}
+.names li:last-child{border-bottom:0;padding-bottom:0}
+.names b{font-family:var(--mono);font-size:17px;color:var(--ink)}
+
+.slider{position:relative}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:13px}
+.scount{font-family:var(--mono);font-size:12.5px;color:var(--muted);direction:ltr}
+.scount b{color:var(--ink);font-size:15px}
+.snav{display:flex;gap:7px}
+.sarrow{font:inherit;font-size:21px;line-height:1;width:38px;height:38px;border-radius:50%;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);
+  display:grid;place-items:center;transition:border-color .18s,color .18s,transform .18s}
+.sarrow:hover:not(:disabled){border-color:var(--pen);color:var(--pen)}
+.sarrow:disabled{opacity:.35;cursor:default}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(276px,330px);gap:14px;
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding-bottom:12px;scrollbar-width:thin}
+@media (prefers-reduced-motion:reduce){.rail{scroll-behavior:auto}}
+.rail:focus-visible{outline:2px solid var(--pen);outline-offset:4px}
+.slide{scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);
+  border-radius:5px;padding:17px 18px;display:flex;flex-direction:column;gap:12px}
+.smeta{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sday{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.stopic{font-size:11.5px;color:var(--ink-2);background:var(--tint);border-radius:999px;padding:3px 10px}
+.ssum{margin:0;font-family:var(--display);font-weight:500;font-size:17.5px;line-height:1.45;color:var(--ink);flex:1}
+.stags{display:grid;gap:6px}
+.tag{font-size:12px;line-height:1.5;border-radius:4px;padding:5px 9px;border:1px solid}
+.tag.crit{color:var(--c-coal);border-color:var(--c-coal);background:rgba(164,67,43,.07)}
+.tag.plat{color:var(--c-opp);border-color:var(--c-opp);background:rgba(31,110,140,.07)}
+.tag.none{color:var(--muted);border-color:var(--line);border-style:dashed}
+.slink{font-size:12px;color:var(--muted);text-decoration:none;border-top:1px solid var(--line);padding-top:10px}
+.slink:hover{color:var(--pen)}
+
 noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
 </style>
 </head>
@@ -390,6 +438,96 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
     <div class="verdict">
       <p class="hand">אותה שאלה. למה התשובות כל כך שונות?</p>
       <p>זו כל השיטה: לא לקבוע מי צודק, אלא לספור מה פורסם ולתת לכם לראות את הפער. הספירה מכסה את ספטמבר 2026 במלואו.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule-top" id="rule2"></div>
+<section class="act paper" id="closeup">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">מקרוב · מתחת לרדאר</span>
+      <h2>כך נראית הספירה עצמה</h2>
+      <p>תשעה פוסטים אמיתיים מתוך 366 — אחד מכל ארבעים, לפי סדר הפרסום. הם לא נבחרו לפי התוכן שלהם, ולכן יש ביניהם גם פוסטים שלא נספרה בהם שום ביקורת.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <h4>במה העמוד עוסק</h4>
+        <ul class="tops"><li><span class="tn">בחירות ומפלגות</span><span class="tt"><i style="width:28%"></i></span><span class="tv">102</span></li><li><span class="tn">7 באוקטובר ואחריות</span><span class="tt"><i style="width:13%"></i></span><span class="tv">49</span></li><li><span class="tn">לייף, בידור וספורט</span><span class="tt"><i style="width:9%"></i></span><span class="tv">33</span></li><li><span class="tn">פשיעה ומשטרה</span><span class="tt"><i style="width:9%"></i></span><span class="tv">33</span></li><li><span class="tn">דת, מדינה וחרדים</span><span class="tt"><i style="width:8%"></i></span><span class="tv">30</span></li><li><span class="tn">שאר הנושאים</span><span class="tt"><i style="width:33%"></i></span><span class="tv">119</span></li></ul>
+        <p class="fnote">366 פוסטים, ספטמבר 2026</p>
+      </div>
+      <div class="fact">
+        <h4>את מי הוא מבקר</h4>
+        <ul class="names"><li><span>בנימין נתניהו</span><b>45</b></li><li><span>הממשלה והשרים (כללי)</span><b>17</b></li><li><span>הליכוד</span><b>9</b></li><li><span>איתמר בן גביר</span><b>6</b></li><li><span>בצלאל סמוטריץ'</span><b>4</b></li></ul>
+        <p class="fnote">מספר הפוסטים שבהם נספרה ביקורת על כל גורם</p>
+      </div>
+    </div>
+
+    <div class="slider">
+      <div class="shead">
+        <span class="scount"><b id="sNow">1</b> / 9</span>
+        <div class="snav">
+          <button class="sarrow" id="sPrev" type="button" aria-label="הקודם">›</button>
+          <button class="sarrow" id="sNext" type="button" aria-label="הבא">‹</button>
+        </div>
+      </div>
+      <div class="rail" id="rail" tabindex="0" aria-label="פוסטים לדוגמה">
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="1 מתוך 9">
+          <div class="smeta"><span class="sday">01.09</span><span class="stopic">7 באוקטובר ואחריות</span></div>
+          <p class="ssum">שרה נתניהו מהדהדת טענות נגד יאיר גולן; כותרת הכיתוב מצטטת את הדמוקרטים</p>
+          <div class="stags"><span class="tag crit">מבקר: שרה נתניהו</span><span class="tag plat">במה: יאיר גולן, הדמוקרטים</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DcvCU30CDBz/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="2 מתוך 9">
+          <div class="smeta"><span class="sday">03.09</span><span class="stopic">7 באוקטובר ואחריות</span></div>
+          <p class="ssum">לשכת רה"מ מאשרת: נתניהו כינס דיון רק אחרי שלוש שעות</p>
+          <div class="stags"><span class="tag crit">מבקר: בנימין נתניהו</span><span class="tag plat">במה: תגובה: לשכת רה"מ</span></div>
+          <a class="slink" href="https://www.instagram.com/p/Dc1UcVoojqD/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="3 מתוך 9">
+          <div class="smeta"><span class="sday">07.09</span><span class="stopic">בחירות ומפלגות</span></div>
+          <p class="ssum">"האם יונתן שלו צעיר מדי להיות ח"כ?"</p>
+          <div class="stags"><span class="tag plat">במה: תוכן אישי: יונתן שלו (ביחד)</span></div>
+          <a class="slink" href="https://www.instagram.com/p/Dc-_b18sDUH/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="4 מתוך 9">
+          <div class="smeta"><span class="sday">09.09</span><span class="stopic">פשיעה ומשטרה</span></div>
+          <p class="ssum">מורה נורה לעיני תלמידים בחורה</p>
+          <div class="stags"><span class="tag none">לא נספרה ביקורת ולא נספרה במה</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DdGN9sco9T1/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="5 מתוך 9">
+          <div class="smeta"><span class="sday">14.09</span><span class="stopic">פשיעה ומשטרה</span></div>
+          <p class="ssum">חשד לרצח יהודי באומן</p>
+          <div class="stags"><span class="tag none">לא נספרה ביקורת ולא נספרה במה</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DdQzuVVIryH/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="6 מתוך 9">
+          <div class="smeta"><span class="sday">17.09</span><span class="stopic">7 באוקטובר ואחריות</span></div>
+          <p class="ssum">איזנקוט: "עשיתי בדיקה, האמירויות העבירו לנתניהו התרעה"</p>
+          <div class="stags"><span class="tag crit">מבקר: בנימין נתניהו ומשפחתו</span><span class="tag plat">במה: גדי איזנקוט</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DdYd3U6oorw/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="7 מתוך 9">
+          <div class="smeta"><span class="sday">21.09</span><span class="stopic">חו"ל ואנטישמיות</span></div>
+          <p class="ssum">כלי תקשורת תובעים את ממשל טראמפ</p>
+          <div class="stags"><span class="tag none">לא נספרה ביקורת ולא נספרה במה</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DdjveNHCJ8c/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="8 מתוך 9">
+          <div class="smeta"><span class="sday">24.09</span><span class="stopic">בחירות ומפלגות</span></div>
+          <p class="ssum">"סדום ועמורה": הכת ביבנאל התפקדה לליכוד</p>
+          <div class="stags"><span class="tag crit">מבקר: הליכוד</span></div>
+          <a class="slink" href="https://www.instagram.com/p/DdrAuKPiD4M/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+        <article class="slide" role="group" aria-roledescription="פוסט" aria-label="9 מתוך 9">
+          <div class="smeta"><span class="sday">28.09</span><span class="stopic">דת, מדינה וחרדים</span></div>
+          <p class="ssum">אלפי חרדים חגגו שחרור עריקים וצוותי תקשורת הותקפו</p>
+          <div class="stags"><span class="tag crit">מבקר: חרדים</span><span class="tag plat">במה: תגובה: האופוזיציה</span></div>
+          <a class="slink" href="https://www.instagram.com/p/Dd0pJd4oOWc/" target="_blank" rel="noopener">הפוסט באינסטגרם ↗</a>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -555,13 +693,57 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
     });
   }, 6000);
 
+  /* ---- the close-up slider: native scroll-snap, arrows only as a convenience ---- */
+  var rail = $("#rail");
+  if (rail) {
+    var prev = $("#sPrev"), next = $("#sNext"), now = $("#sNow"),
+        slides = $$(".slide", rail), rtl = getComputedStyle(rail).direction === "rtl";
+
+    /* scrollLeft is positive in some engines and negative in others once the writing
+       direction is right-to-left, so measure geometry instead and let the browser scroll. */
+    function edge(el){ var r = el.getBoundingClientRect(); return rtl ? r.right : r.left; }
+    function idx(){
+      var e0 = edge(rail), best = 0, bd = Infinity;
+      slides.forEach(function(sl, i){
+        var d = Math.abs(edge(sl) - e0);
+        if (d < bd - 1) { bd = d; best = i; }
+      });
+      return best;
+    }
+    /* the clicked index is the source of truth; reading it back mid-animation
+       (smooth scrolling, a throttled background tab) returns the old card */
+    var at = 0;
+    function paint(){
+      now.textContent = at + 1;
+      prev.disabled = at === 0;
+      next.disabled = at >= slides.length - 1;
+    }
+    function to(i){
+      at = Math.min(slides.length - 1, Math.max(0, i));
+      slides[at].scrollIntoView({block: "nearest", inline: "start",
+                                 behavior: REDUCE ? "auto" : "smooth"});
+      paint();
+    }
+    prev.onclick = function(){ to(at - 1); };
+    next.onclick = function(){ to(at + 1); };
+    rail.addEventListener("scroll", function(){
+      clearTimeout(rail._t);
+      rail._t = setTimeout(function(){ at = idx(); paint(); }, 110);
+    }, {passive: true});
+    rail.addEventListener("keydown", function(e){
+      if (e.key === "ArrowLeft")  { e.preventDefault(); to(at + (rtl ? 1 : -1)); }
+      if (e.key === "ArrowRight") { e.preventDefault(); to(at + (rtl ? -1 : 1)); }
+    });
+    paint();
+  }
+
   /* ---- act three and four ---- */
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
       var t = e.target;
-      if (t.id === "rule1") { t.classList.add("in"); return; }
+      if (t.id === "rule1" || t.id === "rule2") { t.classList.add("in"); return; }
       if (t.id === "end") { t.classList.add("in"); return; }
       t.classList.add("in");
       var k = +t.getAttribute("data-k") || 0;
@@ -576,7 +758,7 @@ noscript .ns{padding:40px 24px;max-width:60ch;margin-inline:auto}
     $$(".flap").forEach(function(f){ if (!/^\d+$/.test(f.textContent) || f.textContent === "0") f.textContent = f.getAttribute("data-n"); });
     $$(".track i").forEach(function(b){ if (!b.style.width) b.style.width = b.getAttribute("data-w") + "%"; });
   }, 9000);
-  [$("#rule1"), $("#end")].concat($$(".card")).forEach(function(el){ if (el) io.observe(el); });
+  [$("#rule1"), $("#rule2"), $("#end")].concat($$(".card")).forEach(function(el){ if (el) io.observe(el); });
 })();
 </script>
 </body>
