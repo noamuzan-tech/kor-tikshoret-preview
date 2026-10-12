@@ -583,6 +583,7 @@ footer nav a:hover{text-decoration:underline}
   <span class="ticker-tag"><i></i>עדכונים</span>
   <div class="ticker-view">
     <div class="ticker-track">
+      <a href="#soon"><b>בקרוב</b> חדשות 12, כאן חדשות וערוץ 14: איפה הם על הציר?</a>
       <a href="#editor"><b>חדש</b> דבר העורך: למה פתחתי את "קוראים תקשורת"</a>
       <a href="#faces"><b>חדש</b> מסדר הזיהוי: איך כל עמוד מציג את ראשי המפלגות</a>
       <a href="#event"><b>חדש</b> אירוע אחד, 8 עמודים: איך סוקר הסרט נז"א</a>
@@ -623,7 +624,7 @@ footer nav a:hover{text-decoration:underline}
       <div class="hero2-copy">
         <h1 class="poster"><span class="an" data-k="under" data-note="לקרוא, וגם לקרוא לסדר">קוראים</span> תקשורת.</h1>
         <p class="rp-tag">בין השורות, מעל הכותרות.</p>
-        <p class="lede">ספרנו כל פוסט של שלושה עמודי חדשות במשך חודש, מיפינו את כלי התקשורת על הקשת, ופירקנו דיווחים עד היסוד. לא כדי להגיד לכם במי לבטוח, אלא כדי שתראו מה העורך ראה לפניכם.</p>
+        <p class="lede">ספרנו כל פוסט של שמונה עמודי חדשות באינסטגרם במשך חודש, מיפינו את כלי התקשורת על הקשת, ופירקנו דיווחים עד היסוד. לא כדי להגיד לכם במי לבטוח, אלא כדי שתראו מה העורך ראה לפניכם.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#map">לפתוח את המפה
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -679,6 +680,182 @@ footer nav a:hover{text-decoration:underline}
     </div>
     <div id="mini" hidden></div>
   </div>
+
+  <section id="soon" class="soon" aria-labelledby="soon-h">
+    <div class="wrap">
+      <div class="soon-head">
+        <span class="soon-tag"><i aria-hidden="true"></i>בקרוב</span>
+        <h2 id="soon-h">איפה נמצאים חדשות 12, כאן חדשות וערוץ 14?</h2>
+        <p>שמונת עמודי האינסטגרם כבר על הציר, כל אחד במקום שהספירה נתנה לו. ערוצי הטלוויזיה ואתרי החדשות נכנסים בקרוב, באותה ספירה ובאותו ספר קוד.</p>
+      </div>
+
+      <div class="soon-stage" id="soonStage" aria-hidden="true">
+        <div class="soon-axis"><span class="rule"></span><span class="mid"></span></div>
+        <div class="soon-labs"><span>אופוזיציה</span><span>באמצע</span><span>קואליציה</span></div>
+      </div>
+
+      <ul class="soon-sr">
+        <li>חדשות 12: המיקום ייחשף בקרוב</li>
+        <li>כאן חדשות: המיקום ייחשף בקרוב</li>
+        <li>ערוץ 14: המיקום ייחשף בקרוב</li>
+      </ul>
+
+      <div class="soon-queue">
+        <span class="soon-qk">ועוד <b class="mono">16</b> עמודים, ערוצים ואתרים בתור</span>
+        <span class="soon-qs" id="soonQ" aria-hidden="true"></span>
+      </div>
+      <a class="soon-go" href="#map">בינתיים, למפה של שמונת העמודים <span aria-hidden="true">←</span></a>
+    </div>
+  </section>
+<style>
+/* "coming soon": the eight pages at their computed place, three named outlets that never land */
+.soon{background:var(--band-dark);color:var(--band-dark-ink);padding-block:clamp(48px,8vh,88px);position:relative;overflow:hidden}
+.soon::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(110% 70% at 50% 0,rgba(200,36,28,.16),transparent 60%)}
+.soon .wrap{position:relative}
+.soon-head{max-width:48ch;margin-inline:auto;text-align:center}
+.soon-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#FF5B4D}
+.soon-tag i{width:8px;height:8px;border-radius:50%;background:#FF5B4D}
+.soon-head h2{font-family:var(--display);font-weight:900;font-size:clamp(26px,4.2vw,44px);line-height:1.12;
+  letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance;color:var(--band-dark-ink)}
+.soon-head p{color:var(--band-dark-muted);font-size:clamp(14.5px,1.6vw,16px);margin:14px 0 0}
+
+.soon-stage{position:relative;direction:ltr;margin:clamp(26px,5vh,46px) auto 0;width:min(100%,920px);height:300px}
+.soon-axis{position:absolute;left:0;right:0;height:0;top:var(--ay,150px)}
+.soon-axis .rule{position:absolute;inset-inline:0;top:0;height:1.5px;background:rgba(255,255,255,.34);transform-origin:50% 50%}
+.soon-axis .mid{position:absolute;left:50%;top:-8px;width:1px;height:16px;background:rgba(255,255,255,.45)}
+.soon-labs{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;
+  font-size:12px;color:var(--band-dark-muted)}
+.soon-labs span:nth-child(2){text-align:center}.soon-labs span:nth-child(3){text-align:right}
+
+/* the eight live pages: a dot on the rule, a name below it */
+.sn-dot{position:absolute;top:var(--ay);left:var(--x);width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;
+  background:var(--band-dark-ink);box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+.sn-stem{position:absolute;left:var(--x);top:var(--ay);width:1px;height:var(--h);background:rgba(255,255,255,.22);z-index:0}
+.sn-chip{position:absolute;left:var(--x);top:var(--y);transform:translateX(-50%);direction:rtl;white-space:nowrap;
+  font-size:12px;font-weight:500;line-height:1;padding:6px 9px;border-radius:5px;text-decoration:none;
+  color:var(--band-dark-ink);background:#24211C;border:1px solid rgba(255,255,255,.16);transition:background .2s,border-color .2s;z-index:1}
+.sn-chip:hover,.sn-chip:focus-visible{background:#36312A;border-color:rgba(255,255,255,.4)}
+
+/* the three named outlets: a dashed track the width of the whole axis, and a tag that keeps moving */
+.sn-track{position:absolute;left:0;right:0;top:var(--y);height:0;border-top:1px dashed rgba(255,91,77,.32)}
+.sn-q{position:absolute;top:var(--y);left:var(--wa);transform:translate(-50%,-50%);direction:rtl;white-space:nowrap;
+  display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:6px;background:#C8241C;color:#fff;
+  font-family:var(--display);font-weight:900;font-size:15px;line-height:1;letter-spacing:-.01em;
+  box-shadow:0 8px 24px rgba(200,36,28,.42);z-index:2}
+.sn-q b{font-family:var(--mono);font-weight:500;font-size:16px;border-inline-start:1px solid rgba(255,255,255,.45);padding-inline-start:8px}
+@media (prefers-reduced-motion:no-preference){
+  /* never lands: where these three sit is the one thing this section does not give away */
+  .sn-q{animation:snWander var(--d,8s) ease-in-out var(--dl,0s) infinite alternate}
+  @keyframes snWander{from{left:var(--wa)}to{left:var(--wb)}}
+  .sn-q b{animation:snPulse 1.8s ease-in-out infinite}
+  @keyframes snPulse{0%,100%{opacity:.5}50%{opacity:1}}
+  .soon-tag i{animation:snPulse 1.6s ease-in-out infinite}
+}
+@media (prefers-reduced-motion:reduce){.sn-q{left:50%}}
+
+.soon-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.soon-queue{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 16px;margin-top:clamp(24px,4vh,36px)}
+.soon-qk{font-size:13.5px;color:var(--band-dark-muted)}
+.soon-qk b{color:var(--band-dark-ink);font-weight:500}
+.soon-qs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.soon-qs i{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-style:normal;
+  font-family:var(--mono);font-size:12px;color:var(--band-dark-muted);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+@media (prefers-reduced-motion:no-preference){
+  .soon-qs i{animation:snQ 3.2s ease-in-out infinite;animation-delay:calc(var(--k) * .2s)}
+  @keyframes snQ{0%,70%,100%{background:rgba(255,255,255,.06);color:var(--band-dark-muted)}
+                 35%{background:rgba(255,91,77,.22);color:#fff}}
+}
+.soon-go{display:table;margin:clamp(22px,4vh,32px) auto 0;color:var(--band-dark-ink);font-weight:500;font-size:15px;
+  text-decoration:none;border-bottom:2px solid #FF5B4D;padding-bottom:3px}
+.soon-go:hover{color:#fff}
+</style>
+<script>
+(function(){
+  var stage = document.getElementById("soonStage");
+  if (!stage) return;
+  var REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* named, never placed: each gets its own lane and its own pace */
+  var Q = [["חדשות 12", 7.5, -1.5], ["כאן חדשות", 9, -6], ["ערוץ 14", 8.2, -3.4]];
+  var q = document.getElementById("soonQ");
+  for (var i = 0; i < 16; i++) q.insertAdjacentHTML("beforeend", '<i style="--k:' + i + '">?</i>');
+
+  function draw(){
+    var H = window.HK; if (!H) return false;
+    [].slice.call(stage.querySelectorAll(".sn")).forEach(function(n){ n.remove(); });
+    var w = stage.clientWidth, narrow = w < 560;
+    var laneQ = narrow ? 34 : 40, laneP = narrow ? 30 : 32;
+    var top = 14, ay = top + Q.length * laneQ + 14;
+    stage.style.setProperty("--ay", ay + "px");
+
+    Q.forEach(function(o, k){
+      var y = top + k * laneQ + 12;
+      var t = document.createElement("span"); t.className = "sn sn-track"; t.style.setProperty("--y", y + "px");
+      var p = document.createElement("span"); p.className = "sn sn-q";
+      p.innerHTML = o[0] + "<b>?</b>";
+      p.style.setProperty("--y", y + "px");
+      /* wide ends on purpose: the tag is not hinting at a position */
+      p.style.setProperty("--wa", (narrow ? 22 : 15) + "%");
+      p.style.setProperty("--wb", (narrow ? 78 : 85) + "%");
+      p.style.setProperty("--d", o[1] + "s"); p.style.setProperty("--dl", o[2] + "s");
+      stage.appendChild(t); stage.appendChild(p);
+    });
+
+    /* the live pages, from the map's own data: the middle of each range, names stacked so they never touch */
+    var pages = H.OUTLETS.filter(function(o){ return document.getElementById("article-" + o.id); })
+      .map(function(o){ return {id: o.id, name: o.name, v: (o.pos[0] + o.pos[1]) / 2}; })
+      .sort(function(a, b){ return a.v - b.v; });
+    var lanes = [], maxk = 0;
+    pages.forEach(function(o){
+      var x = (o.v + 5) / 10 * w;
+      var a = document.createElement("a"); a.className = "sn sn-chip"; a.href = "#article-" + o.id;
+      a.textContent = o.name; a.tabIndex = -1;
+      a.style.visibility = "hidden"; stage.appendChild(a);
+      var cw = a.offsetWidth + 6;
+      x = Math.max(cw / 2, Math.min(w - cw / 2, x));
+      var k = 0; while (lanes[k] !== undefined && x - cw / 2 < lanes[k]) k++;
+      lanes[k] = x + cw / 2; maxk = Math.max(maxk, k);
+      var y = ay + 20 + k * laneP;
+      a.style.setProperty("--x", x.toFixed(1) + "px"); a.style.setProperty("--y", y + "px");
+      a.style.visibility = "";
+      var dot = document.createElement("span"); dot.className = "sn sn-dot";
+      dot.style.setProperty("--x", ((o.v + 5) / 10 * w).toFixed(1) + "px");
+      var st = document.createElement("span"); st.className = "sn sn-stem";
+      st.style.setProperty("--x", x.toFixed(1) + "px"); st.style.setProperty("--h", (y - ay) + "px");
+      stage.insertBefore(st, a); stage.insertBefore(dot, a);
+      o.el = a;
+    });
+    stage.style.height = (ay + 20 + (maxk + 1) * laneP + 22) + "px";
+    stage._pages = pages;
+    return true;
+  }
+
+  /* entering view: the rule draws from the middle and the pages slide out to where the count put them */
+  function play(){
+    if (REDUCE || !stage._pages || !stage.animate) return;
+    stage.querySelector(".rule").animate([{transform: "scaleX(0)"}, {transform: "scaleX(1)"}],
+      {duration: 800, easing: "cubic-bezier(.2,.7,.2,1)"});
+    var cx = stage.clientWidth / 2;
+    stage._pages.forEach(function(o, i){
+      var dx = cx - parseFloat(o.el.style.getPropertyValue("--x"));
+      o.el.animate([{transform: "translateX(calc(-50% + " + dx + "px))", opacity: 0}, {transform: "translateX(-50%)", opacity: 1}],
+        {duration: 900, delay: 250 + i * 70, easing: "cubic-bezier(.2,.7,.2,1)", fill: "backwards"});
+    });
+  }
+
+  function init(){
+    if (!draw()) { setTimeout(init, 120); return; }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function(es){
+        if (es[0].isIntersecting) { io.disconnect(); play(); }
+      }, {threshold: .35});
+      io.observe(stage);
+    }
+    var rt; addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(draw, 150); });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+</script>
 
   <section id="map" class="alt" aria-labelledby="map-h">
     <div class="wrap">
@@ -1213,6 +1390,14 @@ footer nav a:hover{text-decoration:underline}
           <div class="hbar"><span class="lbl">הממשלה או הקואליציה, באור חיובי</span><span class="bar"><i class="alt" style="width:3.3%"></i></span><span class="val">1</span></div>
         </figure>
       </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -1842,6 +2027,14 @@ footer nav a:hover{text-decoration:underline}
 
 
 
+
+
+
+
+
+
+
+
       <!--agm:flash-->
         <section class="agm" aria-labelledby="agm-h-flash">
         <h2 class="rh" id="agm-h-flash">סדר היום של העמוד</h2>
@@ -2117,6 +2310,14 @@ footer nav a:hover{text-decoration:underline}
           <div class="hbar"><span class="lbl">תוכן אישי־רך על אנשי הקואליציה</span><span class="bar"><i class="alt" style="width:3.7%"></i></span><span class="val">1</span></div>
         </figure>
       </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -2615,6 +2816,14 @@ footer nav a:hover{text-decoration:underline}
 
 
 
+
+
+
+
+
+
+
+
       <!--agm:push-->
         <section class="agm" aria-labelledby="agm-h-push">
         <h2 class="rh" id="agm-h-push">סדר היום של העמוד</h2>
@@ -3017,6 +3226,14 @@ footer nav a:hover{text-decoration:underline}
           <div class="hbar"><span class="lbl">אזרחים, משפחות ואנשי ציבור</span><span class="bar"><i class="alt" style="width:15.2%"></i></span><span class="val">5</span></div>
         </figure>
       </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -3566,6 +3783,14 @@ footer nav a:hover{text-decoration:underline}
 
 
 
+
+
+
+
+
+
+
+
       <!--agm:amram-->
         <section class="agm" aria-labelledby="agm-h-amram">
         <h2 class="rh" id="agm-h-amram">סדר היום של העמוד</h2>
@@ -3961,6 +4186,14 @@ footer nav a:hover{text-decoration:underline}
 
 
 
+
+
+
+
+
+
+
+
       <!--agm:online-->
         <section class="agm" aria-labelledby="agm-h-online">
         <h2 class="rh" id="agm-h-online">סדר היום של העמוד</h2>
@@ -4178,6 +4411,14 @@ footer nav a:hover{text-decoration:underline}
           <div class="hbar"><span class="lbl">אזרחים, משפחות ואנשי ציבור</span><span class="bar"><i class="alt" style="width:11.1%"></i></span><span class="val">1</span></div>
         </figure>
       </div>
+
+
+
+
+
+
+
+
 
 
 
